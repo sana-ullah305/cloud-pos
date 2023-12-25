@@ -1,40 +1,52 @@
 from cloud_pos.domain.store import Store
 from cloud_pos.domain.terminal import Terminal
 from cloud_pos.domain.product import Product
+from cloud_pos.domain.purchase import Purchase
+from cloud_pos.domain.sale import Sale
 from cloud_pos.domain.transaction import Transaction
 from cloud_pos.repositories.store_repository import StoreRepository
 from cloud_pos.repositories.terminal_repository import TerminalRepository
 from cloud_pos.repositories.transaction_repository import TransactionRepository
+from cloud_pos.services.store_service import StoreService
 
-# Create a store
-store = Store(store_id=1, name="MyStore")
-StoreRepository.save_store(store)
+def main():
+    store = Store(store_id=1, name="MyStore")
+    store_service = StoreService()
 
-# Add a terminal to the store
-terminal = Terminal(terminal_id=1, location="Counter 1")
-store.add_terminal(terminal)
-TerminalRepository.save_terminal(terminal)
+    while True:
+        print("1. Add product to store")
+        print("2. Update stock quantity for a product in the store")
+        print("3. Start a sale")
+        print("4. Start a purchase")
+        print("5. Show all products")
+        print("6. Show stock for a specific product")
+        print("7. Show products currently on sale")
+        print("8. Show products currently in purchase")
+        print("9. Exit")
 
-# Add products to the terminal
-product1 = Product(product_id=1, name="Product1", price=10.0)
-product2 = Product(product_id=2, name="Product2", price=20.0)
+        choice = input("Enter your choice: ")
 
-# Process a transaction
-transaction = Transaction(transaction_id=1)
-transaction.add_product(product1, quantity=2)
-transaction.add_product(product2, quantity=1)
-transaction.complete_transaction()
+        if choice == "1":
+            store_service.add_product(store, product_id=1, name="Product1", price=10.0, stock_quantity=50)
+        elif choice == "2":
+            store_service.update_stock(store, product_id=1, new_stock_quantity=100)
+        elif choice == "3":
+            store_service.start_sale(store, sale_id=1)
+        elif choice == "4":
+            store_service.start_purchase(store, purchase_id=1)
+        elif choice == "5":
+            store_service.show_all_products(store)
+        elif choice == "6":
+            store_service.show_stock(store, product_id=1)
+        elif choice == "7":
+            store_service.show_products_on_sale(store)
+        elif choice == "8":
+            store_service.show_products_in_purchase(store)
+        elif choice == "9":
+            print("Exiting the program.")
+            break
+        else:
+            print("Invalid choice. Please enter a valid option.")
 
-# Save the transaction
-TransactionRepository.save_transaction(transaction)
-
-# Retrieve and print the transaction
-retrieved_transaction = TransactionRepository.get_transaction_by_id(transaction_id=1)
-
-if retrieved_transaction:
-    print("Transaction ID:", retrieved_transaction.transaction_id)
-    print("Products:")
-    for product, quantity in retrieved_transaction.products:
-        print(f"- {product.name}: {quantity}")
-else:
-    print("Transaction not found.")
+if __name__ == "__main__":
+    main()

@@ -1,22 +1,15 @@
-## Below is the initial folders, files structure of project (cloud-pos):
-
-cloud_pos/
-|-- main.py
+project_root/
 |-- cloud_pos/
-    |-- __init__.py
-    |-- domain/
-        |-- __init__.py
-        |-- store.py
-        |-- terminal.py
-        |-- transaction.py
-        |-- product.py
-    |-- repositories/
-        |-- __init__.py
-        |-- store_repository.py
-        |-- terminal_repository.py
-        |-- transaction_repository.py
-|-- tests/
-    |-- __init__.py
-    |-- test_store.py
-    |-- test_terminal.py
-    |-- test_transaction.py
+|   |-- domain/
+|   |   |-- product.py
+|   |   |-- sale.py
+|   |   |-- purchase.py
+|   |   |-- store.py
+|   |-- repositories/
+|   |   |-- product_repository.py
+|   |   |-- sale_repository.py
+|   |   |-- purchase_repository.py
+|   |   |-- store_repository.py
+|   |-- services/
+|   |   |-- store_service.py
+|-- main.py

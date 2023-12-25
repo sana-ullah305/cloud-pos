@@ -1,12 +1,16 @@
 # cloud_pos/domain/sale.py
 class Sale:
-    def __init__(self, sale_id, products):
+    def __init__(self, sale_id):
         self.sale_id = sale_id
-        self.products = products
-        self.total_amount = sum(product.price for product in products)
+        self.products = []
+        self.total_amount = 0
+
+    def add_product_to_sale(self, product):
+        self.products.append(product)
+        self.total_amount += product.price
 
     def complete_sale(self):
-        # Implement business logic for completing a sale
+        print("Sale completed!")
         for product in self.products:
-            # Adjust stock quantities, assuming products are instances of Product class
-            product.update_stock(-1)  # Decrease stock by 1 for each sold product
+            product.update_stock(-1)
+        print("Stock updated.")
