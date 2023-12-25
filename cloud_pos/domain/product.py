@@ -7,5 +7,14 @@ class Product:
         self.stock_quantity = stock_quantity
 
     def update_stock(self, quantity):
-        # Business logic to update stock quantity
-        pass
+        # Check if there is enough stock to update
+        if self.stock_quantity + quantity >= 0:
+            self.stock_quantity += quantity
+            return True  # Stock updated successfully
+        else:
+            return False  # Insufficient stock
+
+# Example usage:
+# product = Product(product_id=1, name="Product1", price=10.0, stock_quantity=50)
+# product.update_stock(-10)  # Decrease stock by 10
+# product.update_stock(20)   # Increase stock by 20
