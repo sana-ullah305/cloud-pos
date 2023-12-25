@@ -4,6 +4,12 @@ class Purchase:
         self.purchase_id = purchase_id
         self.products = products
         self.total_cost = sum(product.price for product in products)
+    
+    def complete_purchase(self):
+        # Implement the business logic for completing a purchase.
+        for product in self.products:
+            # Adjust the stock quantity, assuming products are the instances of Product class
+            product.update_stock(1) # Increase stock by 1 for each purchased product.
 
 # Example usage:
 # product1 = Product(product_id=1, name="Product1", price=10.0, stock_quantity=50)
