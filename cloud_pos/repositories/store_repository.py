@@ -1,9 +1,13 @@
-class Store:
-    def __init__(self, store_id, name):
-        self.store_id = store_id
-        self.name = name
-        self.terminals = []
+class StoreRepository:
+    stores = []
 
-    def add_terminal(self, terminal):
-        # Business logic to add a terminal to the store
-        pass
+    @classmethod
+    def save_store(cls, store):
+        cls.stores.append(store)
+
+    @classmethod
+    def get_store_by_id(cls, store_id):
+        for store in cls.stores:
+            if store.store_id == store_id:
+                return store
+        return None

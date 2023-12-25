@@ -1,9 +1,13 @@
-class Terminal:
-    def __init__(self, terminal_id, location):
-        self.terminal_id = terminal_id
-        self.location = location
-        self.transactions = []
+class TerminalRepository:
+    terminals = []
 
-    def process_transaction(self, transaction):
-        # Business logic to process a transaction
-        pass
+    @classmethod
+    def save_terminal(cls, terminal):
+        cls.terminals.append(terminal)
+
+    @classmethod
+    def get_terminal_by_id(cls, terminal_id):
+        for terminal in cls.terminals:
+            if terminal.terminal_id == terminal_id:
+                return terminal
+        return None
