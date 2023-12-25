@@ -5,7 +5,8 @@ class Sale:
         self.products = products
         self.total_amount = sum(product.price for product in products)
 
-# Example usage:
-# product1 = Product(product_id=1, name="Product1", price=10.0, stock_quantity=50)
-# product2 = Product(product_id=2, name="Product2", price=20.0, stock_quantity=30)
-# sale = Sale(sale_id=1, products=[product1, product2])
+    def complete_sale(self):
+        # Implement business logic for completing a sale
+        for product in self.products:
+            # Adjust stock quantities, assuming products are instances of Product class
+            product.update_stock(-1)  # Decrease stock by 1 for each sold product
