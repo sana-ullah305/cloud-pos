@@ -7,5 +7,13 @@ class Store:
         self.products = []
 
     def add_product(self, product):
-        # Business logic to add a product to the store
-        pass
+        existing_product = next((p for p in self.products if p.product_id == product.product_id), None)
+        if existing_product:
+            existing_product.update_stock(product.stock_quantity)
+        else:
+            self.products.append(product)
+
+# Example usage:
+# store = Store(store_id=1, name="MyStore")
+# product = Product(product_id=1, name="Product1", price=10.0, stock_quantity=50)
+# store.add_product(product)
