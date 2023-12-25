@@ -7,9 +7,9 @@ class Transaction:
         self.purchase = None
 
     def add_sale(self, sale):
-        # Business logic to associate a sale with the transaction
-        pass
+        self.sale = sale
 
-    def add_purchase(self, purchase):
-        # Business logic to associate a purchase with the transaction
-        pass
+# Example usage:
+# transaction = Transaction(transaction_id=1)
+# sale = Sale(sale_id=1, products=[product1, product2])
+# transaction.add_sale(sale)
